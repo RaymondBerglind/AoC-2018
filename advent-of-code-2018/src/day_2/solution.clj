@@ -9,12 +9,15 @@
   [coll n]
   (some #(= % n) (vals (frequencies coll))))
 
+(defn els-with-n-occurences-of-any
+  [input n]
+  (count (filter
+          #(contains-n-occurences-of-any? % n) input)))
+
 (defn part-1-solution
   [input]
-  (* (count (filter
-             #(contains-n-occurences-of-any? % 2) input))
-     (count (filter
-             #(contains-n-occurences-of-any? % 3) input))))
+  (* (els-with-n-occurences-of-any input 2)
+     (els-with-n-occurences-of-any input 3)))
 
 (comment
   (part-1-solution (input/get-input)))
